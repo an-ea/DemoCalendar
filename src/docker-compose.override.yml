@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+
+  sqlserver:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+
+  identityserver:
+    ports:
+      - "7000:80"
+
+  calendar.api:
+    ports:
+      - "7001:80"
+
+  webclient:
+    ports:
+      - "7002:80"
+
+volumes:
+  sqldata:
+    external: false

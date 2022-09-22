@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: IdentityServer/Dockerfile
+
+  calendar.api:
+    image: ${DOCKER_REGISTRY-}calendarapi
+    build:
+      context: .
+      dockerfile: Calendar.Api/Dockerfile
+    depends_on:
+      - sqlserver
+
+  webclient:
+    image: ${DOCKER_REGISTRY-}webclient
+    build:
+      context: .
+      dockerfile: WebClient/Dockerfile
+    depends_on:
+      - calendar.api
