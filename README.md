@@ -8,7 +8,7 @@ Demo Calendar is a demo project written using a microservices approach. It provi
 - SQL Server.
 
 ## Getting Started
-### Docker:
+### Docker (Docker Desktop 4.12.0):
 ```powershell
 docker-compose build
 docker-compose up
